@@ -3,6 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import  Button  from '../../components/button/button'
 import ImageLogin from '../../components/imageLogin/imageLogin';
 import * as AuthSession from 'expo-auth-session'
+import axios from "axios";
+import { URI } from "../../integration/uri";
+import { User } from "../../models/User";
 
 export default function LoginPage({ navigation } : any){
 
@@ -14,6 +17,27 @@ export default function LoginPage({ navigation } : any){
 
     }
 
+    async function UserExists(email: string) {
+      const response = await axios.get(URI.GETUSERS)
+      const users = await response.data
+      users.forEach((user: any) => {
+        if(user.email == email){
+          return true
+        } 
+      });
+      return false
+    }
+
+    async function handleCreateUser(user: User) {
+      try {
+        const response = await axios.post(URI.CREATEUSER, user)
+        return response.data
+      } catch (error) {
+        console.log(error)
+        window.alert('Erro')
+      }
+    }
+
     async function handleLogIn(){
 
       const CLIENT_ID = '438723730731-27e2u551qauejqhi3d8g06n023k3arq8.apps.googleusercontent.com';
@@ -23,12 +47,31 @@ export default function LoginPage({ navigation } : any){
 
       const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`
 
-      const response = await AuthSession.startAsync({ authUrl });
-      console.log(response)
+      const { type, params } = await AuthSession.startAsync({ authUrl }) as AuthResponse;
 
-      navigation.navigate('Home')
+      const token = params.access_token
+      const response = await fetch(`https://www.googleapis.com/oauth2/v2/userinfo?alt=json&access_token=${token}`)
+      const userInfo = await response.json()
+      const email = await userInfo.email
+      const userExists: boolean = await UserExists(email)
+
+      const user: User = {
+        name: userInfo.name,
+        userName: "guest",
+        email: userInfo.email,
+        age: 18,
+        rating: 50,
+        photo: userInfo.picture
+      }
+
+      if(!userExists){
+        await handleCreateUser(user)
+      }
+      
+      if(type === "success"){
+        navigation.navigate('Home')
+      }
     }
-
 
     return(
       <>

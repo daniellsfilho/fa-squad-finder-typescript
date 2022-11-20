@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -6,49 +7,22 @@ import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import SelectorGroup from "../../components/selectorGroup/selectorGroup";
 import SquadCard from "../../components/squadCard/squadCard";
+import { api } from "../../integration/axios";
+import { URI } from "../../integration/uri";
+import { Squad } from "../../models/Squad";
 
 export default function SquadPage(){
 
-    let squadList = [
-        {
-            squadId: 1,
-            squadName: 'squad 1',
-            ageRestriction: '16+',
-            rankRestriction: 'iron 1 +',
-            description: 'for fun :)',
-            players: [
-                'eu',
-                'gerson'
-            ],
-            playersLimit: 10
-        },
-        {
-            squadId: 2,
-            squadName: 'squad 2',
-            ageRestriction: '21+',
-            rankRestriction: 'platinum 3 +',
-            description: 'road to Immortalsadhkasdlhlksdahklsdahkhksaldhklashkldshkjahds',
-            players: [
-                'poze',
-                'dio',
-                'lima',
-                'eu',
-                'thales'
-            ],
-            playersLimit: 5
-        },
-        {
-            squadId: 3,
-            squadName: 'squad 3',
-            ageRestriction: '1000+',
-            rankRestriction: 'bronze 3 +',
-            description: 'teste',
-            players: [
-                'eu'
-            ],
-            playersLimit: 3
+    const [squadList, setSquadList]: any[] = useState([])
+
+    useEffect(() => {
+        async function loadSquads() {
+            await api.get(URI.SQUADS).then(response => {
+                setSquadList(response.data)
+            }).catch(error => console.log(error))
         }
-    ]
+        loadSquads()
+    }, [])
 
     return(
         <>
@@ -59,15 +33,15 @@ export default function SquadPage(){
             <Text style={styles.header}> Your squads </Text>
                 <SelectorGroup />
                     <View style={styles.squadCardView}>
-                    {squadList.map(squad => (
+                    {squadList.map((squad : Squad) => (
                         <SquadCard 
-                            key={squad.squadId}
-                            name={squad.squadName}
-                            age={squad.ageRestriction}
-                            rank={squad.rankRestriction}
+                            key={squad.id}
+                            name={squad.name}
+                            age={squad.minAge}
+                            rank={squad.minRank}
                             description={squad.description}
-                            players={squad.players}
-                            playersLimit={squad.playersLimit}/>
+                            players={["eu"]}
+                            playersLimit={squad.maxMembers}/>
                     ))}
                     </View>
                 <Button 
