@@ -11,6 +11,10 @@ export default function SelectorGroup(){
         BgColor = 'rgba(217, 217, 217, 0.3)'
     }
 
+    function deactivateVal(){
+        ValBgColor = 'rgba(217, 217, 217, 0.3)'
+    }
+
     return(
         <View style={styles.selectorGroup}>
             <Selector title={'Valorant'} onPress={activateVal()} bgColor={ValBgColor}/>

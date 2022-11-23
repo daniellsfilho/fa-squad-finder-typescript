@@ -11,7 +11,11 @@ import { api } from "../../integration/axios";
 import { URI } from "../../integration/uri";
 import { Squad } from "../../models/Squad";
 
-export default function SquadPage(){
+export default function SquadPage({navigation} : any){
+
+    function navigateToCreateSquads(){
+        navigation.navigate('CreateSquads')
+    }
 
     const [squadList, setSquadList]: any[] = useState([])
 
@@ -46,6 +50,7 @@ export default function SquadPage(){
                     </View>
                 <Button 
                     title={'Create a new Squad'}
+                    onPress={navigateToCreateSquads}
                     textColor={'#ffffff'}/>
                 <Button 
                     title={'Find a squad'}

@@ -6,8 +6,11 @@ import * as AuthSession from 'expo-auth-session'
 import axios from "axios";
 import { URI } from "../../integration/uri";
 import { User } from "../../models/User";
+import { SessionController } from "../../session/sessionController";
 
 export default function LoginPage({ navigation } : any){
+
+    const sessionController: SessionController = new SessionController()
 
     type AuthResponse = {
       type: string;
@@ -21,7 +24,7 @@ export default function LoginPage({ navigation } : any){
       const response = await axios.get(URI.GETUSERS)
       const users = await response.data
       users.forEach((user: any) => {
-        if(user.email == email){
+        if(user.email.toString() == email){
           return true
         } 
       });
@@ -64,6 +67,9 @@ export default function LoginPage({ navigation } : any){
         photo: userInfo.picture
       }
 
+      await sessionController.setUserData(user)
+
+
       if(!userExists){
         await handleCreateUser(user)
       }
@@ -98,6 +104,7 @@ const styles = StyleSheet.create({
   
     text:{
       fontSize: 40,
-      color: '#fff'
+      color: '#fff',
+      fontWeight: 'bold'
     }
   });

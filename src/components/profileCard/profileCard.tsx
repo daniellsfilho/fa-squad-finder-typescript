@@ -2,17 +2,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { StyleSheet, Text, View } from "react-native";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { SessionController } from "../../session/sessionController";
 
-export default function ProfileCard() {
+export default function ProfileCard(props: any) {
+    const { username, age, rating } = props
+
     return(
         <>
             <View style={styles.card}>
                 <FontAwesomeIcon icon={faUserCircle} size={75} style={styles.cardUserIcon}/>
                 <View style={styles.userInfo}>
-                    <Text style={styles.cardText}>Name: -- </Text>
-                    <Text style={styles.cardText}>Age: --</Text>
-                    <Text style={styles.cardText}>Rating: --</Text>
-                    <Text style={styles.cardText}>Description: --</Text>
+                    <Text style={styles.cardText}>Username: {username} </Text>
+                    <Text style={styles.cardText}>Age: {age}</Text>
+                    <Text style={styles.cardText}>Rating: {rating}</Text>
                 </View>
                 <FontAwesomeIcon icon={faEdit} size={20} style={styles.editUserIcon}/>
             </View>

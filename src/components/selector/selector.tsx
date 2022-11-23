@@ -10,6 +10,7 @@ export default function Selector(props : any){
             alignItems: "center",
             backgroundColor: bgColor,
             padding: 10,
+            height: 45,
             width: "30%"
         },
         selectorText:{
