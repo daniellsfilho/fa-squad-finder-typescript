@@ -8,18 +8,21 @@ import { SessionController } from "../../session/sessionController";
 export default function UpdateProfilePage({ navigation }: any){
 
     const [userName, setUserName] = useState('')
-    const [age, setAge] = useState()
+    const [age, setAge] = useState('')
     const [photo, setPhoto] = useState('')
+    const [email, setEmail] = useState('')
     const sessionController = new SessionController()
 
     const setData = async () => {
         const resultUserName = await sessionController.getUserName()
         const resultAge = await sessionController.getUserAge()
         const resultPhoto = await sessionController.getUserPhoto()
+        const resultEmail = await sessionController.getUserEmail()
 
         setUserName(resultUserName)
         setAge(resultAge)
         setPhoto(resultPhoto)
+        setEmail(email)
     }
 
     setData()
@@ -29,10 +32,10 @@ export default function UpdateProfilePage({ navigation }: any){
             <View style={styles.view}>
                 <Header />
                 <SafeAreaView style={styles.kaView}>
-                    <KeyboardAvoidingView behavior="position" enabled>
+                    <View>
                         <Text style={styles.header}> Update your profile </Text>
                         <UpdateProfileForm navigation={navigation} userName={userName} age={age} photo={photo}/>
-                    </KeyboardAvoidingView>
+                    </View>
                 </SafeAreaView>
             </View>
         </>

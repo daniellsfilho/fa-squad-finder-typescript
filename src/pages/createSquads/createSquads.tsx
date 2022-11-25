@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     header: {
         color: '#fff',
         textAlign: 'center',
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: 'bold',
     },
     kaView: {
