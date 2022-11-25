@@ -61,4 +61,29 @@ export class SessionController {
             console.log(error)
         }
     }
+
+    public async getUserEmail(){
+        try {
+            const user_data = await this.getUserData()
+            if(user_data){
+                let email = JSON.parse(user_data).email
+                return email
+            }
+            return null
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public async getUserPhoto(){
+        try {
+            const user_data = await this.getUserData()
+            if(user_data){
+                let photo = JSON.parse(user_data).photo
+                return photo
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }

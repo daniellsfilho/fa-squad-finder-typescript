@@ -44,7 +44,7 @@ export default function SquadPage({navigation} : any){
                             age={squad.minAge}
                             rank={squad.minRank}
                             description={squad.description}
-                            players={["eu"]}
+                            players={squad.members}
                             playersLimit={squad.maxMembers}/>
                     ))}
                     </View>

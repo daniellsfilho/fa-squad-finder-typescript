@@ -6,6 +6,8 @@ import { createDrawerNavigator } from "@react-navigation/drawer"
 import { NavigationContainer } from "@react-navigation/native";
 import HomePage from "../../pages/home/home";
 import ProfilePage from "../../pages/profile/profile";
+import { SessionController } from "../../session/sessionController";
+import { useState } from "react";
 
 export default function Header() {
 

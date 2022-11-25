@@ -3,17 +3,15 @@ import Header from "../../components/header/header";
 import CreateSquadForm from "../../components/createSquadForm/createSquadForm";
 
 
-export default function CreateSquadsPage() {
+export default function CreateSquadsPage({ navigation }: any) {
     return (
         <>
             <View style={styles.view}>
                 <Header />
                 <SafeAreaView style={styles.kaView}>
                     <KeyboardAvoidingView behavior="position" enabled>
-                        <>
                             <Text style={styles.header}> Create a new squad </Text>
-                            <CreateSquadForm />
-                        </>
+                            <CreateSquadForm navigation={navigation}/>
                     </KeyboardAvoidingView>
                 </SafeAreaView>
             </View>
@@ -33,10 +31,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 30
     },
     kaView: {
+        backgroundColor: '#1d2452',
+        padding: 10,
         width: '80%',
-        marginTop: 75
+        marginTop: 100
     }
 })

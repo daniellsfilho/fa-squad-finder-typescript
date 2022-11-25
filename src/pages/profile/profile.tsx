@@ -5,7 +5,7 @@ import ProfileCard from "../../components/profileCard/profileCard";
 import StatsTab from "../../components/statsTab/statsTab";
 import { SessionController } from "../../session/sessionController";
 
-export default function ProfilePage(){
+export default function ProfilePage({ navigation }: any){
 
     const [username, setUsername] = useState('')
     const [age, setAge]: any = useState()
@@ -30,7 +30,8 @@ export default function ProfilePage(){
                 <ProfileCard
                     username = {username}
                     age = {age}
-                    rating = {rating}/>
+                    rating = {rating}
+                    navigation = {navigation}/>
                 <StatsTab />
             </View>
         </>

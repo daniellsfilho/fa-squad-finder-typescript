@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { SessionController } from "../../session/sessionController";
 
 export default function ProfileCard(props: any) {
-    const { username, age, rating } = props
+    const { username, age, rating, navigation } = props
 
     return(
         <>
@@ -16,7 +16,9 @@ export default function ProfileCard(props: any) {
                     <Text style={styles.cardText}>Age: {age}</Text>
                     <Text style={styles.cardText}>Rating: {rating}</Text>
                 </View>
-                <FontAwesomeIcon icon={faEdit} size={20} style={styles.editUserIcon}/>
+                <Pressable onPress={() => navigation.navigate('UpdateProfile')} style={styles.editUserIcon}>
+                    <FontAwesomeIcon icon={faEdit} size={20} color={'#fff'}/>
+                </Pressable>
             </View>
         </>
     )
