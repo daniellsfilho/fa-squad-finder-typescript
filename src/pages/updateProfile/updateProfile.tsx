@@ -29,15 +29,13 @@ export default function UpdateProfilePage({ navigation }: any){
 
     return(
         <>
-            <View style={styles.view}>
+            <SafeAreaView style={styles.view}>
                 <Header />
                 <SafeAreaView style={styles.kaView}>
-                    <View>
                         <Text style={styles.header}> Update your profile </Text>
                         <UpdateProfileForm navigation={navigation} userName={userName} age={age} photo={photo}/>
-                    </View>
                 </SafeAreaView>
-            </View>
+            </SafeAreaView>
         </>
     )
 }
@@ -57,9 +55,7 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     kaView: {
-        backgroundColor: '#1d2452',
         padding: 10,
-        width: '80%',
-        marginTop: 50
+        width: '80%'
     }
 })

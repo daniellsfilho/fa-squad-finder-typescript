@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from 'react-native';
 import  Button  from '../../components/button/button'
 import ImageLogin from '../../components/imageLogin/imageLogin';
@@ -7,8 +7,11 @@ import axios from "axios";
 import { URI } from "../../integration/uri";
 import { User } from "../../models/User";
 import { SessionController } from "../../session/sessionController";
+import { api } from "../../integration/axios";
 
 export default function LoginPage({ navigation } : any){
+
+    const [user, setUser]: any = useState()
 
     const sessionController: SessionController = new SessionController()
 
@@ -21,19 +24,19 @@ export default function LoginPage({ navigation } : any){
     }
 
     async function UserExists(email: string) {
-      const response = await axios.get(URI.GETUSERS)
-      const users = await response.data
-      users.forEach((user: any) => {
-        if(user.email.toString() == email){
-          return true
-        } 
-      });
-      return false
+      const response = await axios.get(`${URI.USERBYEMAIL}/${email}`)
+      const status = response.status
+      if (status === 400) {
+        return false
+      } else {
+        setUser(response.data)
+        return true
+      }
     }
 
-    async function handleCreateUser(user: User) {
+    async function handleCreateUser(userCreate: User) {
       try {
-        const response = await axios.post(URI.CREATEUSER, user)
+        const response = await axios.post(URI.CREATEUSER, userCreate)
         return response.data
       } catch (error) {
         console.log(error)
@@ -58,20 +61,25 @@ export default function LoginPage({ navigation } : any){
       const email = await userInfo.email
       const userExists: boolean = await UserExists(email)
 
-      const user: User = {
-        name: userInfo.name,
-        userName: "guest",
-        email: userInfo.email,
-        age: 18,
-        rating: 50,
-        photo: userInfo.picture
-      }
-
-      await sessionController.setUserData(user)
-
-
       if(!userExists){
-        await handleCreateUser(user)
+
+        const newUser: User = {
+          name: userInfo.name,
+          userName: "guest",
+          email: userInfo.email,
+          age: 18,
+          rating: 50,
+          photo: userInfo.picture
+        }
+
+        const userCreate = await handleCreateUser(newUser)
+        await sessionController.setUserData(userCreate)
+
+      } else {
+
+        await sessionController.setUserData(user)
+        const test = await sessionController.getUserData()
+        console.log(test)
       }
       
       if(type === "success"){

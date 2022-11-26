@@ -86,4 +86,16 @@ export class SessionController {
             console.log(error)
         }
     }
+
+    public async getUserId(){
+        try {
+            const user_data = await this.getUserData()
+            if(user_data){
+                let id = JSON.parse(user_data).id
+                return id
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }

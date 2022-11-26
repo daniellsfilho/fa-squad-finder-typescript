@@ -10,6 +10,7 @@ import SquadCard from "../../components/squadCard/squadCard";
 import { api } from "../../integration/axios";
 import { URI } from "../../integration/uri";
 import { Squad } from "../../models/Squad";
+import { SessionController } from "../../session/sessionController";
 
 export default function SquadPage({navigation} : any){
 
@@ -18,10 +19,12 @@ export default function SquadPage({navigation} : any){
     }
 
     const [squadList, setSquadList]: any[] = useState([])
+    const sessionController = new SessionController()
 
     useEffect(() => {
         async function loadSquads() {
-            await api.get(URI.SQUADS).then(response => {
+            const userId = await sessionController.getUserId()
+            await api.get(`${URI.SQUADS}/user/${userId}`).then(response => {
                 setSquadList(response.data)
             }).catch(error => console.log(error))
         }

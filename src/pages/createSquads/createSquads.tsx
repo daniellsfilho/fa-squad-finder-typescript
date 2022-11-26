@@ -6,15 +6,13 @@ import CreateSquadForm from "../../components/createSquadForm/createSquadForm";
 export default function CreateSquadsPage({ navigation }: any) {
     return (
         <>
-            <View style={styles.view}>
+            <SafeAreaView style={styles.view}>
                 <Header />
                 <SafeAreaView style={styles.kaView}>
-                    <KeyboardAvoidingView behavior="position" enabled>
-                            <Text style={styles.header}> Create a new squad </Text>
-                            <CreateSquadForm navigation={navigation}/>
-                    </KeyboardAvoidingView>
+                        <Text style={styles.header}> Create a new squad </Text>
+                        <CreateSquadForm navigation={navigation}/>
                 </SafeAreaView>
-            </View>
+            </SafeAreaView>
         </>
     )
 }
@@ -31,11 +29,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25,
         fontWeight: 'bold',
+        marginBottom: 20
     },
     kaView: {
-        backgroundColor: '#1d2452',
         padding: 10,
         width: '80%',
-        marginTop: 100
+        marginTop: 50
     }
 })

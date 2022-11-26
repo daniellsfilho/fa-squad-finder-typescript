@@ -48,7 +48,7 @@ export default function CreateSquadForm(props: any) {
     }
 
     return(
-        <View>
+        <>
             <TextInput style={styles.input} placeholder="Squad name" keyboardType="default" value={name} onChangeText={setName} />
             <TextInput style={styles.input} placeholder="Min Age Restriction" keyboardType="numeric" value={minAge} onChangeText={setMinAge}/>
             <TextInput style={styles.input} placeholder="Min Rank Restriction*" keyboardType="default" value={minRank} onChangeText={setMinRank}/>
@@ -59,7 +59,7 @@ export default function CreateSquadForm(props: any) {
                 title="Create squad"
                 textColor="#fff"
             />
-        </View>
+        </>
     )
 }
 
