@@ -49,14 +49,14 @@ export default function CreateSquadForm(props: any) {
 
     return(
         <>
-            <TextInput style={styles.input} placeholder="Squad name" keyboardType="default" value={name} onChangeText={setName} />
-            <TextInput style={styles.input} placeholder="Min Age Restriction" keyboardType="numeric" value={minAge} onChangeText={setMinAge}/>
-            <TextInput style={styles.input} placeholder="Min Rank Restriction*" keyboardType="default" value={minRank} onChangeText={setMinRank}/>
-            <TextInput style={styles.input} placeholder="Max players" keyboardType="numeric" value={maxMembers} onChangeText={setMaxMembers}/>
-            <TextInput style={styles.textarea} numberOfLines={3} placeholder="Description" keyboardType="default" value={description} onChangeText={setDescription}/>
+            <TextInput style={styles.input} placeholder="Nome do Squd" keyboardType="default" value={name} onChangeText={setName} />
+            <TextInput style={styles.input} placeholder="Idade mínima" keyboardType="numeric" value={minAge} onChangeText={setMinAge}/>
+            <TextInput style={styles.input} placeholder="Ranque mínimo*" keyboardType="default" value={minRank} onChangeText={setMinRank}/>
+            <TextInput style={styles.input} placeholder="Máx. Membros" keyboardType="numeric" value={maxMembers} onChangeText={setMaxMembers}/>
+            <TextInput style={styles.textarea} numberOfLines={3} placeholder="Descrição" keyboardType="default" value={description} onChangeText={setDescription}/>
             <Button 
                 onPress={() => {handleCreateSquads()}}   
-                title="Create squad"
+                title="Criar Squad"
                 textColor="#fff"
             />
         </>

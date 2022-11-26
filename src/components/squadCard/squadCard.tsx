@@ -15,9 +15,9 @@ export default function SquadCard(props : any){
                 
                 <ScrollView style={styles.squadInfo} nestedScrollEnabled={true}>
                     <Text style={styles.cardText}>{name}</Text>
-                    <Text style={styles.cardText}>Age restriction: {age}</Text>
-                    <Text style={styles.cardText}>Rank restriction: {rank}</Text>
-                    <Text style={styles.cardText}>Description: {description}</Text>
+                    <Text style={styles.cardText}>Idade mínima: {age}</Text>
+                    <Text style={styles.cardText}>Restrição de ranque: {rank}</Text>
+                    <Text style={styles.cardText}>Descrição: {description}</Text>
                 </ScrollView>
             </View>
         </>

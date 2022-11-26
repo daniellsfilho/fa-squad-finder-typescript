@@ -14,10 +14,10 @@ export default function Header() {
     return (
         <>
             <View style={styles.header}>
-                {/* <Pressable>
+                <Pressable>
                     <FontAwesomeIcon icon={faBars} style={styles.menuIcon} size={30} />
                 </Pressable>
-                <FontAwesomeIcon icon={faUserCircle} style={styles.menuIcon} size={30} /> */}
+                <FontAwesomeIcon icon={faUserCircle} style={styles.menuIcon} size={30} />
             </View>
         </>
 
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         backgroundColor: '#e51c44',
         top: 0,
-        height:50,
+        height:75,
         width: '100%',
     },
     menuIcon: {

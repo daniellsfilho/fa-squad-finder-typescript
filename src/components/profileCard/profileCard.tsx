@@ -12,8 +12,8 @@ export default function ProfileCard(props: any) {
             <View style={styles.card}>
                 <FontAwesomeIcon icon={faUserCircle} size={75} style={styles.cardUserIcon}/>
                 <View style={styles.userInfo}>
-                    <Text style={styles.cardText}>Username: {username} </Text>
-                    <Text style={styles.cardText}>Age: {age}</Text>
+                    <Text style={styles.cardText}>Nome de usuário: {username} </Text>
+                    <Text style={styles.cardText}>Idade: {age}</Text>
                     <Text style={styles.cardText}>Rating: {rating}</Text>
                 </View>
                 <Pressable onPress={() => navigation.navigate('UpdateProfile')} style={styles.editUserIcon}>

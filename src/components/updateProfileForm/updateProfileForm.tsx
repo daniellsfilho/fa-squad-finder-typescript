@@ -50,7 +50,7 @@ export default function UpdateProfileForm(props: any){
             <TextInput style={styles.input} placeholder="new photo" keyboardType="default" defaultValue={photo} value={newPhoto} onChangeText={setNewPhoto}/>
             <Button 
                 onPress={() => {handleUpdateUser()}}   
-                title="Update profile"
+                title="Atualizar perfil"
                 textColor="#fff"
             />
         </View>

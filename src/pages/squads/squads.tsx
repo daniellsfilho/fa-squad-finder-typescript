@@ -18,6 +18,10 @@ export default function SquadPage({navigation} : any){
         navigation.navigate('CreateSquads')
     }
 
+    function navigateToSearchSquads(){
+        navigation.navigate('SearchSquads')
+    }
+
     const [squadList, setSquadList]: any[] = useState([])
     const sessionController = new SessionController()
 
@@ -37,7 +41,7 @@ export default function SquadPage({navigation} : any){
             <Header />
             <ScrollView style={styles.scrollView} nestedScrollEnabled={true} 
                 contentContainerStyle={{alignItems: "center"}}>
-            <Text style={styles.header}> Your squads </Text>
+            <Text style={styles.header}> Seus squads </Text>
                 <SelectorGroup />
                     <View style={styles.squadCardView}>
                     {squadList.map((squad : Squad) => (
@@ -52,11 +56,12 @@ export default function SquadPage({navigation} : any){
                     ))}
                     </View>
                 <Button 
-                    title={'Create a new Squad'}
+                    title={'Crie um novo Squad'}
                     onPress={navigateToCreateSquads}
                     textColor={'#ffffff'}/>
                 <Button 
-                    title={'Find a squad'}
+                    title={'Encontre um Squad'}
+                    onPress={navigateToSearchSquads}
                     textColor={'#ffffff'}/>
                 <Footer />
             </ScrollView>

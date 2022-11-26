@@ -14,22 +14,22 @@ export default function ButtonGroup(props : any){
     }
 
     function navigateToSearch(){
-        navigation.navigate('Login')
+        navigation.navigate('SearchSquads')
     }
 
     return(
         <View style={styles.btnGroup}>
             <Button 
                 onPress={navigateToProfile}
-                title={'Profile'}
+                title={'Perfil'}
                 textColor={'#ffffff'}/>
             <Button 
                 onPress={navigateToSquads}
-                title={'Squads'}
+                title={'Meus Squads'}
                 textColor={'#ffffff'}/>
             <Button 
                 onPress={navigateToSearch}
-                title={'Search'}
+                title={'Encontre Squads'}
                 textColor={'#ffffff'}/>
         </View>
     )

@@ -4,7 +4,7 @@ export default function TextBox(){
     return(
         <>
             <View style={styles.view}>
-                <Text style={styles.text}> Find your squad and track{'\n'} your stats!</Text>
+                <Text style={styles.text}> Encontre seu squad{'\n'} e acompanhe seus stats!</Text>
             </View>
         </>
     )

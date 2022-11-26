@@ -32,7 +32,7 @@ export default function UpdateProfilePage({ navigation }: any){
             <SafeAreaView style={styles.view}>
                 <Header />
                 <SafeAreaView style={styles.kaView}>
-                        <Text style={styles.header}> Update your profile </Text>
+                        <Text style={styles.header}> Atualize seu perfil </Text>
                         <UpdateProfileForm navigation={navigation} userName={userName} age={age} photo={photo}/>
                 </SafeAreaView>
             </SafeAreaView>

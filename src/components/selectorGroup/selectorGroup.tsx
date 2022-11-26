@@ -18,8 +18,8 @@ export default function SelectorGroup(){
     return(
         <View style={styles.selectorGroup}>
             <Selector title={'Valorant'} onPress={activateVal()} bgColor={ValBgColor}/>
-            <Selector title={'Not Avaiable'} bgColor={BgColor}/>
-            <Selector title={'Not Avaiable'} bgColor={BgColor}/>
+            <Selector title={'Indisponível'} bgColor={BgColor}/>
+            <Selector title={'Indisponível'} bgColor={BgColor}/>
         </View>        
     )
 }

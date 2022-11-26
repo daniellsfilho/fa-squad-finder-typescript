@@ -5,7 +5,7 @@ import SelectorGroup from "../selectorGroup/selectorGroup";
 export default function StatsTab(){
     return(
         <View style={styles.statsView}>
-            <Text style={styles.header}> Your stats </Text>
+            <Text style={styles.header}> Seus stats </Text>
             <SelectorGroup />
         </View>
     )
