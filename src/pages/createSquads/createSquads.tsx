@@ -7,7 +7,7 @@ export default function CreateSquadsPage({ navigation }: any) {
     return (
         <>
             <SafeAreaView style={styles.view}>
-                <Header />
+                <Header navigation={navigation}/>
                 <SafeAreaView style={styles.kaView}>
                         <Text style={styles.header}> Criar novo squad </Text>
                         <CreateSquadForm navigation={navigation}/>

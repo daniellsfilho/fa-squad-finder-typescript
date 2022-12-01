@@ -6,25 +6,26 @@ import { URI } from "../../integration/uri";
 import SquadCard from "../../components/squadCard/squadCard";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import UserCard from "../../components/userCard/userCard";
 
-export default function SearchSquadsPage({navigation}: any){
+export default function SearchUsersPage({navigation}: any){
 
-    const [squads, setSquads]: any[] = useState([])
+    const [users, setUsers]: any[] = useState([])
     const [name, setName] = useState('')
 
-    const findSquad = async (squadName: string) => {
-        await api.get(`${URI.SQUADS}/${squadName}`).then(response => {
-            setSquads(response.data)
+    const findUser = async (userName: string) => {
+        await api.get(`${URI.GETUSERS}/${userName}`).then(response => {
+            setUsers(response.data)
         }).catch(error => console.log(error))
     }
 
     useEffect(() => {
-        async function loadSquads() {
-            await api.get(`${URI.SQUADS}`).then(response => {
-                setSquads(response.data)
+        async function loadUsers() {
+            await api.get(`${URI.GETUSERS}`).then(response => {
+                setUsers(response.data)
             }).catch(error => console.log(error))
         }
-        loadSquads()
+        loadUsers()
     }, [])
 
     return(
@@ -32,23 +33,20 @@ export default function SearchSquadsPage({navigation}: any){
             <SafeAreaView style={styles.view}>
                 <Header navigation={navigation}/>
                 <ScrollView style={styles.scrollView}>
-                    <Text style={styles.header}> Encontre squads </Text>
+                    <Text style={styles.header}> Encontre jogadores </Text>
                     <View style={styles.formView}>
-                        <TextInput style={styles.input} placeholder="Nome do Squad" keyboardType="default" value={name} onChangeText={setName}/>
-                        <Pressable style={styles.button} onPress={() => {findSquad(name)}}>
+                        <TextInput style={styles.input} placeholder="Nome do Jogador" keyboardType="default" value={name} onChangeText={setName}/>
+                        <Pressable style={styles.button} onPress={() => {findUser(name)}}>
                             <FontAwesomeIcon icon={faSearch} color={'#fff'} size={25}/>
                         </Pressable>
                     </View>
-                    <View style={styles.squadCardView}>
-                    {squads.map((squad: any) => (
-                        <SquadCard 
-                            key={squad.id}
-                            name={squad.name}
-                            age={squad.minAge}
-                            rank={squad.minRank}
-                            description={squad.description}
-                            players={squad.members}
-                            playersLimit={squad.maxMembers}/>
+                    <View style={styles.userCardView}>
+                    {users.map((user: any) => (
+                        <UserCard 
+                        key = {user.id}
+                        userName = {user.userName}
+                        age = {user.age}
+                        rating = {user.rating}/>
                     ))}
                     </View>
                 </ScrollView>
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between"
     },
-    squadCardView: {
+    userCardView: {
         width: '100%',
         alignItems: 'center',
         marginBottom: 20,

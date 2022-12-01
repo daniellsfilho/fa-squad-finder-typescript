@@ -7,6 +7,8 @@ import CreateSquadsPage from '../pages/createSquads/createSquads';
 import UpdateProfilePage from '../pages/updateProfile/updateProfile';
 import SearchSquadsPage from '../pages/searchSquads/searchSquads';
 import SquadDetails from '../pages/squadDetails/squadDetails';
+import InvitationsPage from '../pages/invitations/invitations';
+import SearchUsersPage from '../pages/searchUsers/searchUsers';
 
 const { Screen, Navigator} = createNativeStackNavigator();
 
@@ -46,6 +48,14 @@ export function StackRoutes(){
             <Screen 
                 name='SquadDetails'
                 component={SquadDetails}
+                options={{headerShown: false}}/>
+            <Screen 
+                name='Invitations'
+                component={InvitationsPage}
+                options={{headerShown: false}}/>
+            <Screen 
+                name='SearchUsers'
+                component={SearchUsersPage}
                 options={{headerShown: false}}/>
         </Navigator>
     )

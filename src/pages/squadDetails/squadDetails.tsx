@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native"
+import Button from "../../components/button/button";
+import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import SquadCardDetails from "../../components/squadCardDetails/squadCardDetails";
 import UserCard from "../../components/userCard/userCard";
@@ -17,6 +19,10 @@ export default function SquadDetails({ navigation } : any){
     const [minRank, setMinRank] = useState('')
     const [id, setId] = useState()
     const [userList, setUserList] = useState([])
+
+    function navigateToSearchUsers(){
+        navigation.navigate('SearchUsers')
+    }
 
     const getData = async () => {
         const sessionController = new SessionController()
@@ -54,7 +60,7 @@ export default function SquadDetails({ navigation } : any){
     return(
         <>
             <View style={styles.view}>
-                <Header />
+                <Header navigation={navigation}/>
                 <ScrollView style={styles.scrollView} contentContainerStyle={{alignItems: "center"}}>
                     <SquadCardDetails squadName={squadName} squadMembers={squadMembers} maxMembers={maxMembers} description={description} minAge={minAge} minRank={minRank}/>
                     <Text style={styles.text}> Membros:  ({squadMembers.length}/{maxMembers})</Text>
@@ -68,6 +74,12 @@ export default function SquadDetails({ navigation } : any){
                             />
                         ))}
                     </View>
+                    <Button 
+                        width="80%"
+                        title={'Convide outros jogadores'}
+                        onPress={() => {navigateToSearchUsers()}}
+                        textColor={'#ffffff'}/>
+                    <Footer />
                 </ScrollView>
             </View>
         </>

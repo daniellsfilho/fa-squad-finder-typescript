@@ -43,7 +43,7 @@ export default function SquadPage({navigation} : any){
     return(
         <>
             <View style={styles.view}>
-            <Header />
+            <Header navigation={navigation}/>
             <ScrollView style={styles.scrollView} nestedScrollEnabled={true} 
                 contentContainerStyle={{alignItems: "center"}}>
             <Text style={styles.header}> Seus squads </Text>

@@ -5,5 +5,8 @@ export enum URI {
     CREATEUSER = "https://squad-finder-api.onrender.com/user",
     GETUSERS = "https://squad-finder-api.onrender.com/users",
     UPDATEUSER = "https://squad-finder-api.onrender.com/user/update",
-    GETUSERSBYSQUAD = "https://squad-finder-api.onrender.com/users/squad"
+    GETUSERSBYSQUAD = "https://squad-finder-api.onrender.com/users/squad",
+    USERINVITATIONS = "https://squad-finder-api.onrender.com/invitations",
+    DECLINEINVITATION = "https://squad-finder-api.onrender.com/invitation/decline",
+    ACCEPTINVITATION = "https://squad-finder-api.onrender.com/invitation/accept",
 }

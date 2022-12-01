@@ -8,7 +8,7 @@ export default function HomePage({ navigation } : any){
     return(
         <>
             <View style={styles.container}>
-                <Header />
+                <Header navigation={navigation}/>
                 <TextBox />
                 <ImageHome />
                 <ButtonGroup 

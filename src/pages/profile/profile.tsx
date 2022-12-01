@@ -26,7 +26,7 @@ export default function ProfilePage({ navigation }: any){
     return(
         <>
             <View style={styles.view}>
-                <Header />
+                <Header navigation={navigation}/>
                 <ProfileCard
                     username = {username}
                     age = {age}
