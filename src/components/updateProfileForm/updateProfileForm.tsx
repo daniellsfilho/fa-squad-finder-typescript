@@ -49,6 +49,7 @@ export default function UpdateProfileForm(props: any){
             <TextInput style={styles.input} placeholder={age.toString()} keyboardType="numeric" defaultValue={age} value={newAge} onChangeText={setNewAge}/>
             <TextInput style={styles.input} placeholder="new photo" keyboardType="default" defaultValue={photo} value={newPhoto} onChangeText={setNewPhoto}/>
             <Button 
+                width="100%"
                 onPress={() => {handleUpdateUser()}}   
                 title="Atualizar perfil"
                 textColor="#fff"

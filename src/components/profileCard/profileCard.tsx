@@ -10,15 +10,15 @@ export default function ProfileCard(props: any) {
     return(
         <>
             <View style={styles.card}>
-                <FontAwesomeIcon icon={faUserCircle} size={75} style={styles.cardUserIcon}/>
+                <Pressable onPress={() => navigation.navigate('UpdateProfile')} style={styles.editUserIcon}>
+                    <FontAwesomeIcon icon={faEdit} size={20} color={'#fff'}/>
+                </Pressable>
+                <FontAwesomeIcon icon={faUserCircle} size={100} style={styles.cardUserIcon}/>
                 <View style={styles.userInfo}>
                     <Text style={styles.cardText}>Nome de usuário: {username} </Text>
                     <Text style={styles.cardText}>Idade: {age}</Text>
                     <Text style={styles.cardText}>Rating: {rating}</Text>
                 </View>
-                <Pressable onPress={() => navigation.navigate('UpdateProfile')} style={styles.editUserIcon}>
-                    <FontAwesomeIcon icon={faEdit} size={20} color={'#fff'}/>
-                </Pressable>
             </View>
         </>
     )
@@ -26,16 +26,14 @@ export default function ProfileCard(props: any) {
 
 const styles = StyleSheet.create({
     card:{
-        position: 'absolute',
-        top: 100,
+        position: 'relative',
         backgroundColor: 'rgba(217, 217, 217, 0.3)',
-        height: '25%',
+        height: '45%',
         width: '80%',
         borderRadius: 10,
         padding: 10,
         margin: 20,
-        justifyContent: "space-around",
-        alignItems: "flex-start"
+        alignItems: "center"
     },
     cardText:{
         color: '#fff',
@@ -47,17 +45,15 @@ const styles = StyleSheet.create({
     cardUserIcon:{
         display: 'flex',
         color: '#fff',
-        marginTop: 25,
         marginLeft: 5
     },
     editUserIcon:{
         display: 'flex',
         color: '#fff',
-        left: '93%',
-        bottom: '95%'
+        left: '45%'
     },  
     userInfo:{
-        bottom: 40,
-        left: 120
+        top: 20,
+        alignItems: "center"
     }
 })

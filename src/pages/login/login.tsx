@@ -24,14 +24,19 @@ export default function LoginPage({ navigation } : any){
     }
 
     async function UserExists(email: string) {
-      const response = await axios.get(`${URI.USERBYEMAIL}/${email}`)
-      const status = response.status
-      if (status === 400) {
-        return false
-      } else {
-        setUser(response.data)
-        return true
+      try {
+        const response = await axios.get(`${URI.USERBYEMAIL}/${email}`)
+        const status = response.status
+        if (status === 400) {
+          return false
+        } else {
+          setUser(response.data)
+          return true
+        }
+      } catch (error) {
+        console.log(error)
       }
+      
     }
 
     async function handleCreateUser(userCreate: User) {
@@ -45,24 +50,22 @@ export default function LoginPage({ navigation } : any){
     }
 
     async function handleLogIn(){
-
       const CLIENT_ID = '438723730731-27e2u551qauejqhi3d8g06n023k3arq8.apps.googleusercontent.com';
       const REDIRECT_URI = 'https://auth.expo.io/@daniellsfilho/SquadFinder';
       const RESPONSE_TYPE = 'token';
       const SCOPE = encodeURI('profile email');
-
+      
       const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`
-
+      
       const { type, params } = await AuthSession.startAsync({ authUrl }) as AuthResponse;
-
       const token = params.access_token
       const response = await fetch(`https://www.googleapis.com/oauth2/v2/userinfo?alt=json&access_token=${token}`)
       const userInfo = await response.json()
       const email = await userInfo.email
-      const userExists: boolean = await UserExists(email)
-
+      const userExists: boolean | undefined = await UserExists(email)
+      
       if(!userExists){
-
+        
         const newUser: User = {
           name: userInfo.name,
           userName: "guest",
@@ -71,10 +74,10 @@ export default function LoginPage({ navigation } : any){
           rating: 50,
           photo: userInfo.picture
         }
-
+        
         const userCreate = await handleCreateUser(newUser)
         await sessionController.setUserData(userCreate)
-
+        
       } else {
 
         await sessionController.setUserData(user)
@@ -93,6 +96,7 @@ export default function LoginPage({ navigation } : any){
           <Text style={styles.text}>SQUAD{'\n'}FINDER</Text>
           <ImageLogin />
           <Button 
+            width={300}
             onPress={handleLogIn}
             icon="social-google"
             title={'Entrar com o Google'}

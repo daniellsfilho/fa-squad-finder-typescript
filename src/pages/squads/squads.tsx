@@ -22,6 +22,11 @@ export default function SquadPage({navigation} : any){
         navigation.navigate('SearchSquads')
     }
 
+    async function navigateToSquadDetails(squad: Squad){
+        await sessionController.setSquadData(squad)
+        navigation.navigate('SquadDetails')
+    }
+
     const [squadList, setSquadList]: any[] = useState([])
     const sessionController = new SessionController()
 
@@ -46,6 +51,7 @@ export default function SquadPage({navigation} : any){
                     <View style={styles.squadCardView}>
                     {squadList.map((squad : Squad) => (
                         <SquadCard 
+                            onPress={() => {navigateToSquadDetails(squad)}}
                             key={squad.id}
                             name={squad.name}
                             age={squad.minAge}
@@ -56,10 +62,12 @@ export default function SquadPage({navigation} : any){
                     ))}
                     </View>
                 <Button 
+                    width="80%"
                     title={'Crie um novo Squad'}
                     onPress={navigateToCreateSquads}
                     textColor={'#ffffff'}/>
                 <Button 
+                    width="80%"
                     title={'Encontre um Squad'}
                     onPress={navigateToSearchSquads}
                     textColor={'#ffffff'}/>

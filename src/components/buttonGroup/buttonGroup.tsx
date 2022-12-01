@@ -20,14 +20,17 @@ export default function ButtonGroup(props : any){
     return(
         <View style={styles.btnGroup}>
             <Button 
+                width={300}
                 onPress={navigateToProfile}
                 title={'Perfil'}
                 textColor={'#ffffff'}/>
             <Button 
+                width={300}
                 onPress={navigateToSquads}
                 title={'Meus Squads'}
                 textColor={'#ffffff'}/>
             <Button 
+                width={300}
                 onPress={navigateToSearch}
                 title={'Encontre Squads'}
                 textColor={'#ffffff'}/>

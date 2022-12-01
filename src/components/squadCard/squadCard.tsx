@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
-import { StyleSheet, Text, View, ScrollView } from "react-native"
+import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native"
 import { faUsers } from "@fortawesome/free-solid-svg-icons"
 
 export default function SquadCard(props : any){
-    const { name, age, rank, description, players, playersLimit} = props
+    const { name, age, rank, description, players, playersLimit, onPress} = props
     let playersQuantity = players.length
     return(
         <>
-            <View style={styles.card}>
+            <Pressable style={styles.card} onPress={onPress}>
                 <View style={styles.cardIconArea}>
                     <FontAwesomeIcon icon={faUsers} size={60} style={styles.cardUsersIcon}/> 
                     <Text style={styles.playersQuantity}> {playersQuantity} / {playersLimit} </Text>
@@ -19,7 +19,7 @@ export default function SquadCard(props : any){
                     <Text style={styles.cardText}>Restrição de ranque: {rank}</Text>
                     <Text style={styles.cardText}>Descrição: {description}</Text>
                 </ScrollView>
-            </View>
+            </Pressable>
         </>
     )
 }
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 16,
-        maxWidth: 200,
+        maxWidth: 190,
         flexDirection: 'column'
     },
     squadInfo:{

@@ -1,4 +1,5 @@
 import { AsyncStorage } from "react-native";
+import { Squad } from "../models/Squad";
 import { User } from "../models/User";
 
 export class SessionController {
@@ -9,7 +10,6 @@ export class SessionController {
         } catch (error) {
             console.log(error)
         }
-        
     }
 
     public async getUserData(){
@@ -92,6 +92,108 @@ export class SessionController {
             const user_data = await this.getUserData()
             if(user_data){
                 let id = JSON.parse(user_data).id
+                return id
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public async setSquadData(squadData: Squad){
+        try {
+            await AsyncStorage.setItem('squad_data', (JSON.stringify(squadData)))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public async getSquadData(){
+        try {
+            const squad_data = await AsyncStorage.getItem('squad_data')
+            if(squad_data) return squad_data
+            return null
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public async getSquadName(){
+        try {
+            const squad_data = await this.getSquadData()
+            if(squad_data){
+                const name = JSON.parse(squad_data).name
+                return name
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public async getSquadMembers(){
+        try {
+            const squad_data = await this.getSquadData()
+            if(squad_data){
+                const members = JSON.parse(squad_data).members
+                return members
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public async getSquadsMaxMembers(){
+        try {
+            const squad_data = await this.getSquadData()
+            if(squad_data){
+                const maxMembers = JSON.parse(squad_data).maxMembers
+                return maxMembers
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public async getSquadDescription(){
+        try {
+            const squad_data = await this.getSquadData()
+            if(squad_data){
+                const description = JSON.parse(squad_data).description
+                return description
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public async getSquadMinAge(){
+        try {
+            const squad_data = await this.getSquadData()
+            if(squad_data){
+                const minAge = JSON.parse(squad_data).minAge
+                return minAge
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public async getSquadMinRank(){
+        try {
+            const squad_data = await this.getSquadData()
+            if(squad_data){
+                const minRank = JSON.parse(squad_data).minRank
+                return minRank
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public async getSquadId(){
+        try {
+            const squad_data = await this.getSquadData()
+            if(squad_data){
+                const id = JSON.parse(squad_data).id
                 return id
             }
         } catch (error) {
