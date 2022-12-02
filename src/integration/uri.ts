@@ -9,4 +9,5 @@ export enum URI {
     USERINVITATIONS = "https://squad-finder-api.onrender.com/invitations",
     DECLINEINVITATION = "https://squad-finder-api.onrender.com/invitation/decline",
     ACCEPTINVITATION = "https://squad-finder-api.onrender.com/invitation/accept",
+    INVITE = "https://squad-finder-api.onrender.com/invitation"
 }

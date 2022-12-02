@@ -9,11 +9,13 @@ import React from "react"
 
 export default function InvitationCard(props: any){
 
-    const { squadName, squadDescription, invitationId, navigation} = props
+    const { squadName, squadDescription, invitationId, navigation, window} = props
 
     const declineInvitation = async () => {
         try {
             await api.delete(`${URI.DECLINEINVITATION}/${invitationId}`)
+            window.alert('Convite recusado')
+            navigation.replace('Invitations')
         } catch (error) {
             console.log(error)
         }
@@ -22,8 +24,11 @@ export default function InvitationCard(props: any){
     const acceptInvitation = async () => {
         try {
             await api.delete(`${URI.ACCEPTINVITATION}/${invitationId}`)   
+            window.alert('Convite aceito!')
+            navigation.replace('Invitations')
         } catch (error) {
             console.log(error)
+            alert('Squad cheio!')
         }
     }
 

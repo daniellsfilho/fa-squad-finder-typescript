@@ -39,7 +39,7 @@ export default function InvitationsPage({navigation} : any){
             <ScrollView style={styles.scrollView} contentContainerStyle={{alignItems: "center"}}>
                 <Text style={styles.header}> Seus Convites: </Text>
                 {invitationList.map((invitation: any) => (
-                    <InvitationCard key={invitation.id} squadName={invitation.squad.name} squadDescription={invitation.squad.description} invitationId={invitation.id} navigation={navigation}/>
+                    <InvitationCard key={invitation.id} squadName={invitation.squad.name} squadDescription={invitation.squad.description} invitationId={invitation.id} navigation={navigation} window={window}/>
                 ))}
                 
             </ScrollView>

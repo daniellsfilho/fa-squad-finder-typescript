@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View, Alert  } from "react-native";
 import Header from "../../components/header/header";
 import { api } from "../../integration/axios";
 import { URI } from "../../integration/uri";
 import SquadCard from "../../components/squadCard/squadCard";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import UserCard from "../../components/userCard/userCard";
+import { SessionController } from "../../session/sessionController";
 
 export default function SearchUsersPage({navigation}: any){
 
@@ -17,6 +18,34 @@ export default function SearchUsersPage({navigation}: any){
         await api.get(`${URI.GETUSERS}/${userName}`).then(response => {
             setUsers(response.data)
         }).catch(error => console.log(error))
+    }
+
+    const inviteBody = {
+        title: "Você foi convidado",
+        body: "O líder do squad quer jogar com você"
+    }
+
+    const inviteUser = async (userId: number) => {
+        try {
+
+            const sessionController = new SessionController()
+            const myId = await sessionController.getUserId()
+            
+            if(myId == userId){
+                window.alert('Você não pode convidar a si mesmo!')
+                return
+            }
+
+            const squadId = await sessionController.getSquadId()
+            const res = await api.post(`${URI.INVITE}/${squadId}/${userId}`, inviteBody)
+            console.log(res.data)
+
+            window.alert('Jogador convidado!')
+
+        } catch (error) {
+            console.log(error)
+            window.alert('Ocorreu um erro')
+        }
     }
 
     useEffect(() => {
@@ -42,11 +71,17 @@ export default function SearchUsersPage({navigation}: any){
                     </View>
                     <View style={styles.userCardView}>
                     {users.map((user: any) => (
-                        <UserCard 
-                        key = {user.id}
-                        userName = {user.userName}
-                        age = {user.age}
-                        rating = {user.rating}/>
+                        <>
+                            <View key = {user.id} style={{width: '100%', alignItems: 'center'}}>
+                                <UserCard
+                                    userName = {user.userName}
+                                    age = {user.age}
+                                    rating = {user.rating}/>
+                                <Pressable onPress={() => {inviteUser(user.id)}} style={styles.inviteIcon}>
+                                    <FontAwesomeIcon icon={faEnvelope} size={25} color={'#fff'}/>
+                                </Pressable>
+                            </View>
+                        </>
                     ))}
                     </View>
                 </ScrollView>
@@ -104,5 +139,9 @@ const styles = StyleSheet.create({
         textAlignVertical: "center",
         backgroundColor: '#e51c44',
         borderRadius: 5
+    },
+    inviteIcon:{
+        marginLeft: '67%',
+        bottom: '65%'
     }
 })

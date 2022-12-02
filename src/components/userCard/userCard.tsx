@@ -1,13 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
+import { api } from "../../integration/axios"
 
 export default function UserCard(props: any){
 
     const { userName, age, rating, onPress} = props
 
     return(
-        <Pressable style={styles.card} onPress={onPress}>
+        <>
+            <Pressable style={styles.card} onPress={onPress}>
             <View style={styles.cardIconArea}>
                 <FontAwesomeIcon icon={faUser} size={60} style={styles.cardUserIcon}/>
             </View>
@@ -17,7 +19,8 @@ export default function UserCard(props: any){
                 <Text style={styles.cardText}>Idade: {age.toString()}</Text>
                 <Text style={styles.cardText}>Rating: {rating.toString()}</Text>
             </View>
-        </Pressable>
+            </Pressable>
+        </>
     )
 }
 
