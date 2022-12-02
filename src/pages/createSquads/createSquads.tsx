@@ -1,18 +1,19 @@
 import { SafeAreaView, StyleSheet, View, KeyboardAvoidingView, Text } from "react-native";
 import Header from "../../components/header/header";
 import CreateSquadForm from "../../components/createSquadForm/createSquadForm";
+import { ScrollView } from "react-native-gesture-handler";
 
 
 export default function CreateSquadsPage({ navigation }: any) {
     return (
         <>
-            <SafeAreaView style={styles.view}>
+            <View style={styles.view}>
                 <Header navigation={navigation}/>
-                <SafeAreaView style={styles.kaView}>
+                <ScrollView style={styles.scrollView} contentContainerStyle={{alignItems: "center"}}>
                         <Text style={styles.header}> Criar novo squad </Text>
                         <CreateSquadForm navigation={navigation}/>
-                </SafeAreaView>
-            </SafeAreaView>
+                </ScrollView>
+            </View>
         </>
     )
 }
@@ -29,11 +30,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25,
         fontWeight: 'bold',
-        marginBottom: 20
-    },
-    kaView: {
-        padding: 10,
-        width: '80%',
         marginTop: 50
+    },
+    scrollView:{
+        backgroundColor: '#1d2452',
+        marginTop: 75,
+        width: '100%'
     }
 })

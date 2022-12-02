@@ -4,8 +4,12 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 
 export default function SquadCardDetails(props : any) {
 
-    const { squadName, squadMembers, maxMembers, description, minAge, minRank } = props
+    const { squadName, squadMembers, maxMembers, description, minAge, minRank, navigation } = props
     const quantMembers = squadMembers.length
+
+    function navigateToUpdateSquad(){
+        navigation.navigate('UpdateSquad')
+    }
 
     return(
         <>  
@@ -13,7 +17,7 @@ export default function SquadCardDetails(props : any) {
                 {squadName.toUpperCase()}
             </Text>
             <View style={styles.card}>
-                <Pressable style={styles.editSquadIcon}>
+                <Pressable style={styles.editSquadIcon} onPress={() => {navigateToUpdateSquad()}}>
                     <FontAwesomeIcon icon={faEdit} size={20} color={'#fff'}/>
                 </Pressable>
                 <FontAwesomeIcon icon={faUsers} size={100} style={styles.cardSquadIcon}/>

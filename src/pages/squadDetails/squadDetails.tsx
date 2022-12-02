@@ -62,7 +62,7 @@ export default function SquadDetails({ navigation } : any){
             <View style={styles.view}>
                 <Header navigation={navigation}/>
                 <ScrollView style={styles.scrollView} contentContainerStyle={{alignItems: "center"}}>
-                    <SquadCardDetails squadName={squadName} squadMembers={squadMembers} maxMembers={maxMembers} description={description} minAge={minAge} minRank={minRank}/>
+                    <SquadCardDetails squadName={squadName} squadMembers={squadMembers} maxMembers={maxMembers} description={description} minAge={minAge} minRank={minRank} navigation={navigation}/>
                     <Text style={styles.text}> Membros:  ({squadMembers.length}/{maxMembers})</Text>
                     <View style={styles.userCardView}>
                         {userList.map((user: any) => (

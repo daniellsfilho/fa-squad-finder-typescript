@@ -1,8 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faBars, faEnvelope} from "@fortawesome/free-solid-svg-icons";
+import { faHome, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { createDrawerNavigator } from "@react-navigation/drawer"
 import { NavigationContainer } from "@react-navigation/native";
 import HomePage from "../../pages/home/home";
 import ProfilePage from "../../pages/profile/profile";
@@ -17,11 +16,15 @@ export default function Header(props: any) {
         navigation.navigate('Invitations')
     }
 
+    function navigateToHome(){
+        navigation.navigate('Home')
+    }
+
     return (
         <>
             <View style={styles.header}>
-                <Pressable>
-                    <FontAwesomeIcon icon={faBars} style={styles.menuIcon} size={30} />
+                <Pressable onPress={() => {navigateToHome()}}>
+                    <FontAwesomeIcon icon={faHome} style={styles.menuIcon} size={30} />
                 </Pressable>
                 <Pressable onPress={() => {navigateToInvitations()}}>
                     <FontAwesomeIcon icon={faEnvelope} style={styles.menuIcon} size={30} />

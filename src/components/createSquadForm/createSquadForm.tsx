@@ -48,8 +48,8 @@ export default function CreateSquadForm(props: any) {
     }
 
     return(
-        <>
-            <TextInput style={styles.input} placeholder="Nome do Squd" keyboardType="default" value={name} onChangeText={setName} />
+        <View style={styles.kaView}>
+            <TextInput style={styles.input} placeholder="Nome do Squad" keyboardType="default" value={name} onChangeText={setName} />
             <TextInput style={styles.input} placeholder="Idade mínima" keyboardType="numeric" value={minAge} onChangeText={setMinAge}/>
             <TextInput style={styles.input} placeholder="Ranque mínimo*" keyboardType="default" value={minRank} onChangeText={setMinRank}/>
             <TextInput style={styles.input} placeholder="Máx. Membros" keyboardType="numeric" value={maxMembers} onChangeText={setMaxMembers}/>
@@ -59,7 +59,7 @@ export default function CreateSquadForm(props: any) {
                 title="Criar Squad"
                 textColor="#fff"
             />
-        </>
+        </View>
     )
 }
 
@@ -81,5 +81,9 @@ const styles = StyleSheet.create({
         color: '#000',
         marginTop: 10,
         marginBottom: 10
+    }, 
+    kaView: {
+        width: '80%',
+        marginTop: 50
     }
 })

@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import UpdateProfileForm from "../../components/updateProfileForm/updateProfileForm";
 import { useState } from "react";
 import { SessionController } from "../../session/sessionController";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function UpdateProfilePage({ navigation }: any){
 
@@ -29,13 +30,13 @@ export default function UpdateProfilePage({ navigation }: any){
 
     return(
         <>
-            <SafeAreaView style={styles.view}>
+            <View style={styles.view}>
                 <Header navigation={navigation}/>
-                <SafeAreaView style={styles.kaView}>
+                <ScrollView style={styles.scrollView} contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}}>
                         <Text style={styles.header}> Atualize seu perfil </Text>
                         <UpdateProfileForm navigation={navigation} userName={userName} age={age} photo={photo}/>
-                </SafeAreaView>
-            </SafeAreaView>
+                </ScrollView>
+            </View>
         </>
     )
 }
@@ -52,10 +53,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25,
         fontWeight: 'bold',
-        marginBottom: 20
+        marginTop: 50
     },
-    kaView: {
-        padding: 10,
-        width: '80%'
+    scrollView:{
+        backgroundColor: '#1d2452',
+        marginTop: 75,
+        width: '100%'
     }
 })

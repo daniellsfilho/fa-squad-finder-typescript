@@ -43,7 +43,7 @@ export default function UpdateProfileForm(props: any){
     }
 
     return(
-        <View>
+        <View style={styles.kaView}>
             
             <TextInput style={styles.input} placeholder={userName} keyboardType="default" defaultValue={userName}  value={newUserName} onChangeText={setNewUserName}/>
             <TextInput style={styles.input} placeholder={age.toString()} keyboardType="numeric" defaultValue={age} value={newAge} onChangeText={setNewAge}/>
@@ -68,5 +68,9 @@ const styles = StyleSheet.create({
         color: '#000',
         marginTop: 10,
         marginBottom: 10
+    },
+    kaView: {
+        width: '80%',
+        marginTop: 50
     }
 })
